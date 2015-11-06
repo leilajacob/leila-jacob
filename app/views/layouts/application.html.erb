@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LeilaJacob</title>
+  <title>
+    <% if current_page?(about_path) %>About
+    <% elsif current_page?(knitting_path) %>Knitting
+    <% elsif current_page?(gallery_path) %>Gallery
+    <% else current_page?(root_path) %>LeilaJacob
+    <% end %>
+  </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -49,6 +55,13 @@
 
           <div class="masthead clearfix">
             <div class="inner">
+              <h1 class="masthead-brand">
+                <% if current_page?(about_path) %>About
+                <% elsif current_page?(knitting_path) %>Knitting
+                <% elsif current_page?(gallery_path) %>Gallery
+                <% else current_page?(root_path) %>LeilaJacob
+                <% end %>
+              </h1>
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><%= link_to "Home", root_path%></li>
