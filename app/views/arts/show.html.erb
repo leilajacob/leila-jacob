@@ -1,0 +1,44 @@
+<p><%= image_tag @art.image.url(:medium) %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @art.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= number_to_currency @art.price %>
+</p>
+
+<% if @art.quantity == 0 %>
+<p>
+  This item is no longer in stock.
+</p>
+<% end %>
+
+<p>
+  <strong>Description:</strong>
+  <%= @art.description %>
+</p>
+
+
+<p>
+  <strong>Category:</strong>
+  <%= @art.category_id %>
+</p>
+
+<% if notice != nil %>
+  <p id="notice" class="alert alert-danger"><%= notice %></p>
+<% end %> 
+
+<% if @art.quantity > 0 %>
+<p>
+  <%= form_tag(add_to_cart_path) do %>
+
+    <%= hidden_field_tag :product_id, @art.id %>
+    <%= submit_tag "Add to Cart", class: "btn btn-success" %>
+  <% end %>
+</p>
+<% end %>
+
+

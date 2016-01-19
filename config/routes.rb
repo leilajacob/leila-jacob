@@ -1,11 +1,39 @@
 Rails.application.routes.draw do
+  get 'cart/add_to_cart'
+
+  get 'cart/view_order'
+
+  get 'cart/checkout'
+
+  devise_for :users
+  get 'front/all_art'
+
+  get 'front/by_size'
+
+  resources :orders
+  resources :items
+  resources :line_items
+  resources :resources
+  resources :storefronts
+  resources :categories
+  resources :arts
   get 'about' => 'welcome#about'
 
-  root 'welcome#index'
+  get 'index' => 'welcome#index'
 
-  get 'gallery' => 'welcome#gallery'
+  root 'front#all_art'
 
   get 'knitting' => 'welcome#knitting'
+
+  get 'all_art' => 'front#all_art'
+
+  post 'add_to_cart' => 'cart#add_to_cart'
+  get 'view_order' => 'cart#view_order'
+  post 'checkout' => 'cart#checkout'
+
+  post 'order_complete' => 'cart#order_complete'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
